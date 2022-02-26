@@ -9,7 +9,6 @@ class piso_Lista:
     def insert(self, floorName, row, column, flip, swap, patron_List):
 
         newFloor=floor(floorName, row, column, flip, swap, patron_List)
-        print(newFloor)
         self.size+=1
 
         if self.head is None:
@@ -28,8 +27,11 @@ class piso_Lista:
             +" intercambio de: "+printer.getSwap())
             printer= printer.getNext()
 
+    def len(self):
+        return self.size
+
     #To do list
-    def sort(self):
+    '''def sort(self):
         sorter=self.head
         nextNode = None
         aux= None
@@ -46,7 +48,7 @@ class piso_Lista:
                         nextNode= sorter
                         sorter = aux
                     nextNode= sorter.getNext()
-                sorter = sorter.getNext()
+                sorter = sorter.getNext()'''
                     
 
 
