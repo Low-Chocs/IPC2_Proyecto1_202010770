@@ -2,18 +2,18 @@ from imp import load_source
 from traceback import format_exception
 from load import *
 from piso_Lista import piso_Lista as pisoL
-from showData import showData
+from showData import showData 
 
 
 option = 0
 option1 = False
+text1= "Cargar XML"
 
 
 # Temporal menu
 while option != 3:
-
-    print("\nPisos Artesanales S.A \n1. Cargar XML \n2. Seleccionar lista y pisos"
-          + "\n3. Acciones con los datos cargados")
+    print("\nPisos Artesanales S.A \n1. "+ text1 +" \n2. Seleccionar lista de pisos"
+          + "\n3. Acciones con la lista de pisos")
 
     try:
         option = int(input("Ingrese una opción\n"))
@@ -22,19 +22,29 @@ while option != 3:
         continue
 
     if option == 1:
-        name = load.loadName()
-        R = load.loadR()
-        C = load.loadC()
-        F = load.loadF()
-        S = load.loadS()
-        pisoLista = pisoL()
-        for i in range(len(name)):
-            pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text, "xd")
-        option1 = True
+        try:
+            name = load.loadName()
+            R = load.loadR()
+            C = load.loadC()
+            F = load.loadF()
+            S = load.loadS()
+            pisoLista = pisoL()
+            for i in range(len(name)):
+                pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text, "xd")
+            if pisoLista.len()>0:    
+                option1 = True
+                text1="Cargar nuevo XML"
+            else:
+                option1=False
+                text1="Cargar XML"
+        except:
+            print("No se cargo el archivo")
+            continue
 
     elif option == 2:
         if option1:
-            showData.menu(pisoLista)
+            show = showData(pisoLista)
+            show.selectFloor()
 
         else:
             print("No se ha cargado información")

@@ -18,10 +18,20 @@ class piso_Lista:
             self.bottom.setNext(newFloor)
             self.bottom= newFloor
     
+    def showMenu(self):
+        printer= self.head
+        print("\nLista de pisos: \nOpción 0: Regresar al menú principal")
+        for i in range(self.size):
+            print("\nOpción: "+str(i+1)+"\nNombre del piso: "+ printer.getFloorName()
+            +"\nCon un numero de filas de: "+ printer.getRow()+"\nCon un numero de columnas de: "
+            +printer.getColumn()+"\nCon un coste de volteo de: "+printer.getFlip()+"\nCon un coste de"
+            +" intercambio de: "+printer.getSwap())
+            printer= printer.getNext()    
+
     def show(self):
         printer= self.head
         for i in range(self.size):
-            print("Lista de pisos\nNombre del piso: "+ printer.getFloorName()
+            print("\nLista de pisos\nNombre del piso: "+ printer.getFloorName()
             +"\nCon un numero de filas de: "+ printer.getRow()+"\nCon un numero de columnas de: "
             +printer.getColumn()+"\nCon un coste de volteo de: "+printer.getFlip()+"\nCon un coste de"
             +" intercambio de: "+printer.getSwap())
@@ -29,6 +39,19 @@ class piso_Lista:
 
     def len(self):
         return self.size
+
+    def newList(self, option):
+        new = self.head
+        for i in range(self.size):
+            if i+1==option:
+                return floor(new.getFloorName(), new.getRow(), new.getColumn(), new.getFlip(), new.getSwap(),5)
+            new= new.getNext()
+        print("No se encontro la lista")
+    def clean(self):
+        self.head =None
+        self.bottom= None       
+
+
 
     #To do list
     '''def sort(self):
