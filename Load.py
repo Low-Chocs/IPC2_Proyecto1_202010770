@@ -29,3 +29,13 @@ class load:
         tree=xp.parse(route)
         S=tree.xpath('//piso//S')
         return S
+    
+    def loadPatron():
+        tree=xp.parse(route)
+        patron=tree.xpath('//patron')
+        return patron
+
+    def loadPatronName():
+        tree=xp.parse(route)
+        patronName=tree.xpath('//patron')
+        return patronName
