@@ -28,9 +28,11 @@ while option != 3:
             C = load.loadC()
             F = load.loadF()
             S = load.loadS()
+            patron= load.loadPatron()
+            patronName=load.loadPatronName()
             pisoLista = pisoL()
             for i in range(len(name)):
-                pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text, "xd")
+                pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text, patronName, patron)
             if pisoLista.len()>0:    
                 option1 = True
                 text1="Cargar nuevo XML"

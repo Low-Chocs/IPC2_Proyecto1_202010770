@@ -34,7 +34,8 @@ class piso_Lista:
             print("\nLista de pisos\nNombre del piso: "+ printer.getFloorName()
             +"\nCon un numero de filas de: "+ printer.getRow()+"\nCon un numero de columnas de: "
             +printer.getColumn()+"\nCon un coste de volteo de: "+printer.getFlip()+"\nCon un coste de"
-            +" intercambio de: "+printer.getSwap())
+            +" intercambio de: "+printer.getSwap()+" Contiene el piso con código de: "+printer.getCadena()+" Con el siguiente patrón: "
+            +printer.getCadena())
             printer= printer.getNext()
 
     def len(self):

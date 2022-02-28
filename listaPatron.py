@@ -6,9 +6,9 @@ class listaPatron:
         self.bottom= None
         self.size=0
 
-    def insert(self, name, matriz):
+    def insert(self, name, cadena, row, column):
 
-        nuevoPatron=patron(name, matriz)
+        nuevoPatron=patron(name, cadena, row, column)
         self.size+=1
 
         if self.head is None:
