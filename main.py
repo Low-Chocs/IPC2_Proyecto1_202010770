@@ -3,17 +3,20 @@ from traceback import format_exception
 from load import *
 from piso_Lista import piso_Lista as pisoL
 from showData import showData 
+from listaPatron import *
 
 
 option = 0
 option1 = False
 text1= "Cargar XML"
+patroncito=listaPatron()
+palabra=""
 
 
 # Temporal menu
-while option != 3:
+while option != 4:
     print("\nPisos Artesanales S.A \n1. "+ text1 +" \n2. Seleccionar lista de pisos"
-          + "\n3. Acciones con la lista de pisos")
+          + "\n3. Acciones con la lista de pisos"+"\n4. Salir")
 
     try:
         option = int(input("Ingrese una opción\n"))
@@ -22,17 +25,26 @@ while option != 3:
         continue
 
     if option == 1:
+        pisoLista = pisoL()
         try:
             name = load.loadName()
             R = load.loadR()
             C = load.loadC()
             F = load.loadF()
             S = load.loadS()
-            patron= load.loadPatron()
             patronName=load.loadPatronName()
-            pisoLista = pisoL()
+
             for i in range(len(name)):
-                pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text, patronName, patron)
+                patroncito.clean()
+                patron2= load.loadPatron(name[i].attrib['nombre']) 
+                for j in range(len(patron2)):
+                    for k in range(len(patron2[j].text)):
+                        if patron2[j].text[k]!= " ":
+                            palabra+=patron2[j].text[k]
+                    if palabra!="" or palabra!= " ":
+                        patroncito.insert(patronName[j].attrib['codigo'],palabra,F[i].text, S[i].text)
+                    palabra=""
+                pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text,patroncito)
             if pisoLista.len()>0:    
                 option1 = True
                 text1="Cargar nuevo XML"
@@ -54,7 +66,7 @@ while option != 3:
         print("Opción 3")
     elif option < 1:
         print("Ingrese un dato mayor o igual a 1")
-    elif option > 3:
+    elif option > 4:
         print("Ingrese un dato menor o igual a 3")
         option = 0
 

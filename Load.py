@@ -2,7 +2,8 @@ from tkinter import N, filedialog
 from lxml import etree as xp
 route=""
 class load:
-    
+    def __init__(self):
+        pass
     def loadName():
         global route
         route = filedialog.askopenfilename(title="Select A file")
@@ -29,13 +30,13 @@ class load:
         tree=xp.parse(route)
         S=tree.xpath('//piso//S')
         return S
-    
-    def loadPatron():
-        tree=xp.parse(route)
-        patron=tree.xpath('//patron')
-        return patron
 
     def loadPatronName():
         tree=xp.parse(route)
         patronName=tree.xpath('//patron')
         return patronName
+
+    def loadPatron(nombre):
+        tree=xp.parse(route)
+        patron=tree.xpath('//piso[@nombre="'+nombre+'"]//patrones//patron')
+        return patron

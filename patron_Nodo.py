@@ -1,10 +1,9 @@
 class patron_Nodo:
-    def patron_Nodo(self, code, cadena, row, column):
+    def __init__(self, code, cadena, row, column):
         self.code= code
         self.cadena= cadena
         self.row= row 
         self.column=column
-        self.matriz
         self.next= None
 
 

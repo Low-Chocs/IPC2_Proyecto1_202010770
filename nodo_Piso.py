@@ -1,24 +1,19 @@
 from listaPatron import listaPatron as newPatron
 class nodo_Piso:
-    def __init__(self, floorName, row, column, flip, swap, code, cadena):
+    def __init__(self, floorName, row, column, flip, swap, listaPiso):
         self.floorName = floorName
         self.row = row
         self.column= column
         self.flip=flip
         self.swap=swap
-        self.code= code
-        self.cadena=cadena
-        self.patronlista= newPatron(self.code, self.cadena, self.row, self.column)
         self.next= None
+        self.listaPiso : newPatron= listaPiso
+    
+    def getList(self):
+        return self.listaPiso
 
     def getNext(self):
         return self.next
-    
-    def getCadena(self):
-        return self.cadena
-
-    def getCode(self):
-        return self.code
     
     def getFloorName(self):
         return self.floorName
