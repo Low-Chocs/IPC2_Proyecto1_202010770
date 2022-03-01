@@ -26,34 +26,36 @@ while option != 4:
 
     if option == 1:
         pisoLista = pisoL()
-        try:
-            name = load.loadName()
-            R = load.loadR()
-            C = load.loadC()
-            F = load.loadF()
-            S = load.loadS()
-            patronName=load.loadPatronName()
+        #try:
+        name = load.loadName()
+        R = load.loadR()
+        C = load.loadC()
+        F = load.loadF()
+        S = load.loadS()
+        patronName=load.loadPatronName()
 
-            for i in range(len(name)):
-                patroncito.clean()
-                patron2= load.loadPatron(name[i].attrib['nombre']) 
-                for j in range(len(patron2)):
-                    for k in range(len(patron2[j].text)):
-                        if patron2[j].text[k]!= " ":
-                            palabra+=patron2[j].text[k]
-                    if palabra!="" or palabra!= " ":
-                        patroncito.insert(patronName[j].attrib['codigo'],palabra,F[i].text, S[i].text)
-                    palabra=""
-                pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text,patroncito)
-            if pisoLista.len()>0:    
-                option1 = True
-                text1="Cargar nuevo XML"
-            else:
-                option1=False
-                text1="Cargar XML"
-        except:
-            print("No se cargo el archivo")
-            continue
+        for i in range(len(name)):
+            print("He salido")
+            patroncito.clean()
+            patron2= load.loadPatron(name[i].attrib['nombre']) 
+            for j in range(len(patron2)):
+                for k in range(len(patron2[j].text)):
+                    if patron2[j].text[k]!= " " and patron2[j].text[k]!= "\n":
+                        palabra+=patron2[j].text[k]
+                if palabra!="" and palabra!= " ":
+                    patroncito.insert(patronName[j].attrib['codigo'],palabra,R[i].text, C[i].text)
+                palabra=""
+            pisoLista.insert(name[i].attrib['nombre'], R[i].text,C[i].text, F[i].text, S[i].text,patroncito)
+            
+        if pisoLista.len()>0:    
+            option1 = True
+            text1="Cargar nuevo XML"
+        else:
+            option1=False
+            text1="Cargar XML"
+        #except:
+         #   print("No se cargo el archivo")
+          #  continue
 
     elif option == 2:
         if option1:
