@@ -11,10 +11,7 @@ class showData:
         else:
             piso = self.pisoList.newList(option)
             try:
-                selectedFloor= pisoLista()
-                selectedFloor.insert(piso.getFloorName(), piso.getRow(), piso.getColumn(), piso.getFlip(), piso.getSwap(),5)
-                print("\nSe ha seleccionado:")
-                selectedFloor.show()
+                return piso
             except:
                 print("No se pudo cargar el piso seleccionado")
                 self.selectFloor()

@@ -26,6 +26,7 @@ class piso_Lista:
             +"\nCon un numero de filas de: "+ printer.getRow()+"\nCon un numero de columnas de: "
             +printer.getColumn()+"\nCon un coste de volteo de: "+printer.getFlip()+"\nCon un coste de"
             +" intercambio de: "+printer.getSwap())
+            
             printer.getList().show()
             printer= printer.getNext()    
 
@@ -46,12 +47,20 @@ class piso_Lista:
         new = self.head
         for i in range(self.size):
             if i+1==option:
-                return floor(new.getFloorName(), new.getRow(), new.getColumn(), new.getFlip(), new.getSwap(),5)
+                return new.getList()
             new= new.getNext()
         print("No se encontro la lista")
+
     def clean(self):
         self.head =None
-        self.bottom= None       
+        self.bottom= None   
+        self.size=0 
+
+    def showMatrix(self):
+        printer= self.head
+        for i in range(self.size):
+            printer.getList().showMatrix()
+            printer=printer.getNext()
 
 
 

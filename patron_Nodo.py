@@ -1,18 +1,30 @@
 from listaMatriz import *
 
 class patron_Nodo:
-    def __init__(self, code, cadena, row, column):
+    def __init__(self, code, cadena, row, column,flip,swap):
+        #print(self.cadena)
         self.code = code
         self.cadena = cadena
+        print(self.cadena)
         self.row = row
-        print(row)
         self.column = column
-        print(column)
         self.next = None
+        self.flip=flip
+        self.swap=swap
         self.matrix = listaMatriz(row,column)
         self.loadMatrix(cadena,row,column)
-        self.matrix.show()
 
+    def getSwap(self):
+        return self.swap
+    
+    def getFlip(self):
+        return self.flip
+    
+    def setFlip(self, flip):
+        self.flip=flip
+
+    def setSwap(self, swap):
+        self.swap=swap
 
     def getNext(self):
         return self.next
@@ -24,6 +36,7 @@ class patron_Nodo:
         return self.matriz
 
     def getCadena(self):
+        print(self.cadena)
         return self.cadena
 
     def getColumn(self):
@@ -46,11 +59,13 @@ class patron_Nodo:
 
     def getMatrix(self):
         return self.matrix
+    
+    def printMatrix(self):
+        self.matrix.show()
 
     
 
     def loadMatrix(self, chain, x, y):
-        print("CADENA"+chain)
         for i in range(int(x)):
             for j in range(int(y)):
                 self.matrix.insert(chain[j], i, j)

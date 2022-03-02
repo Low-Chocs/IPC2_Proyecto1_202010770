@@ -7,9 +7,13 @@ class nodo_Piso:
         self.flip=flip
         self.swap=swap
         self.next= None
-        self.listaPiso : newPatron= listaPiso
+        self.listaPiso = listaPiso
     
     def getList(self):
+        return self.listaPiso
+    
+    def setList(self, list):
+        self.listaPiso=list
         return self.listaPiso
 
     def getNext(self):
