@@ -28,38 +28,38 @@ while option != 4:
 
     if option == 1:
         pisoLista = pisoL()
-        try:
-            name = load.loadName()
-            R = load.loadR()
-            C = load.loadC()
-            F = load.loadF()
-            S = load.loadS()
-            patronName = load.loadPatronName()
+        #try:
+        name = load.loadName()
+        R = load.loadR()
+        C = load.loadC()
+        F = load.loadF()
+        S = load.loadS()
+        patronName = load.loadPatronName()
 
-            for i in range(len(name)):
-                patron = listaPatron()
-                patron2 = load.loadPatron(name[i].attrib['nombre'])
+        for i in range(len(name)):
+            patron = listaPatron()
+            patron2 = load.loadPatron(name[i].attrib['nombre'])
 
-                for j in range(len(patron2)):
-                    for k in range(len(patron2[j].text)):
-                        if patron2[j].text[k] != " " and patron2[j].text[k] != "\n":
+            for j in range(len(patron2)):
+                for k in range(len(patron2[j].text)):
+                    if patron2[j].text[k] != " " and patron2[j].text[k] != "\n":
                             palabra += patron2[j].text[k]
                             
-                    if palabra != "" and palabra != " ":
+                if palabra != "" and palabra != " ":
                         patron.insert(patronName[j].attrib['codigo'], palabra, R[i].text, C[i].text, F[i].text, S[i].text)
-                    palabra = ""
-                pisoLista.insert(name[i].attrib['nombre'], R[i].text, C[i].text, F[i].text, S[i].text, patron)
+                palabra = ""
+            pisoLista.insert(name[i].attrib['nombre'], R[i].text, C[i].text, F[i].text, S[i].text, patron)
 
-            if pisoLista.len() > 0:
-                option1 = True
-                print("Se ha cargado exitosamente el XML")
-                text1 = "Cargar nuevo XML"
-            else:
-                option1 = False
-                text1 = "Cargar XML"
-        except:
+        if pisoLista.len() > 0:
+            option1 = True
+            print("Se ha cargado exitosamente el XML")
+            text1 = "Cargar nuevo XML"
+        else:
+            option1 = False
+            text1 = "Cargar XML"
+        """except:
             print("No se cargo el archivo")
-            continue
+            continue"""
 
     elif option == 2:
         if option1:
@@ -75,7 +75,6 @@ while option != 4:
             print("No se ha cargado información")
     elif option == 3:
         if option1 and option2:
-            piso.showMatrix()
             option3 = listActions(piso)
             option3.menu()
         else:
@@ -84,7 +83,7 @@ while option != 4:
     elif option < 1:
         print("Ingrese un dato mayor o igual a 1")
     elif option > 4:
-        print("Ingrese un dato menor o igual a 3")
+        print("Ingrese un dato menor o igual a 4")
         option = 0
 
 print("Has salido, feliz día")

@@ -2,9 +2,8 @@ from listaMatriz import *
 
 class patron_Nodo:
     def __init__(self, code, cadena, row, column,flip,swap):
-        #print(self.cadena)
         self.code = code
-        self.cadena = cadena
+        self.cadena: str = cadena
         print(self.cadena)
         self.row = row
         self.column = column
@@ -12,7 +11,8 @@ class patron_Nodo:
         self.flip=flip
         self.swap=swap
         self.matrix = listaMatriz(row,column)
-        self.loadMatrix(cadena,row,column)
+        self.loadMatrix(row,column)
+        self.matrix.show()
 
     def getSwap(self):
         return self.swap
@@ -65,10 +65,12 @@ class patron_Nodo:
 
     
 
-    def loadMatrix(self, chain, x, y):
+    def loadMatrix(self, x, y):
+        counter=0
         for i in range(int(x)):
             for j in range(int(y)):
-                self.matrix.insert(chain[j], i, j)
+                self.matrix.insert(self.cadena[counter], i, j)
+                counter+=1
 
         self.matrix.fillDown()
         self.matrix.fillLeft()
