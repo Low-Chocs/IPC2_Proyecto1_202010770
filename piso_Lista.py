@@ -65,24 +65,37 @@ class piso_Lista:
 
 
     #To do list
-    '''def sort(self):
+    """""
+    def sort(self):
         sorter=self.head
-        nextNode = None
+        nextNode = sorter.getNext()
         aux= None
         if self.size== 1:
             print("Solo tienes un elemento en la lista")
     
         for i in range(self.size):
             print("Holaaa")
-            if sorter.getNext != None:
-                for j in range(self.size-2):
+            self.show()
+            if sorter.getNext() != None:
+                
+                for j in range(i,self.size):
                     print("No entre")
                     if sorter.getFloorName()>nextNode.getFloorName():
-                        sorter = aux
-                        nextNode= sorter
-                        sorter = aux
-                    nextNode= sorter.getNext()
-                sorter = sorter.getNext()'''
-                    
+                        aux= sorter
+                        sorter.setFloorName(sorter.getNext().getFloorName())
+                        sorter.setRow(sorter.getNext().getRow())
+                        sorter.setColumn(sorter.getNext().getNext())
+                        sorter.setFlip(sorter.getNext().getFlip())
+                        sorter.setSwap(sorter.getNext().getSwap())
+                        sorter.setList(sorter.getNext().getList())
 
+                        sorter.getNext().setFloorName(aux.getFloorName())
+                        sorter.getNext().setRow(aux.getRow())
+                        sorter.getNext().setColumn(aux.getNext())
+                        sorter.getNext().setFlip(aux.getFlip())
+                        sorter.getNext().setSwap(aux.getSwap())
+                        sorter.getNext().setList(aux.getList())
+                        sorter= sorter.getNext()
+                        self.show()
+                sorter = sorter.getNext()"""
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <pisosArtesanales>
-    <piso nombre="ejemplo01">
+    <piso nombre="ejemplo04">
         <R> 2 </R>
         <C> 4 </C>
         <F> 1 </F>
@@ -10,7 +10,7 @@
             WBWBWWWB
         </patron>
             <patron codigo="cod12">
-                BWBWWWWW
+            BWBWWWWW
 </patron>
         </patrones>
     </piso>

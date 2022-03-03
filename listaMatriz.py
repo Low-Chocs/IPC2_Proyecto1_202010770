@@ -1,4 +1,8 @@
+from tkinter import W
 from nodoMatriz import *
+import os 
+import webbrowser 
+import graphviz
 
 
 class listaMatriz:
@@ -32,18 +36,17 @@ class listaMatriz:
 
     def find(self, x, y):
         printer = self.head
-        #if x > self.row-1 or y > self.column-1:
-           # return None
-        #else:
-        for i in range(self.size):
-            if printer.getPosX() == x:
-                if printer.getPosY() == y:
-                    #print("Se ha encontrado el color: "+printer.getColor() + " en la pos en x: "+str(printer.getPosX())
-                           # + " y en la pos en y: " + str(printer.getPosY()))
-                    return printer
-            printer = printer.getRight()
-        
-
+        if printer!=None and printer.getRight()!=None:
+            for i in range(self.size):
+                if printer.getPosX() == x:
+                    if printer.getPosY() == y:
+                        #print("Se ha encontrado el color: "+printer.getColor() + " en la pos en x: "+str(printer.getPosX())
+                             # + " y en la pos en y: " + str(printer.getPosY()))
+                        return printer
+                printer = printer.getRight()
+        else:
+            return None
+    
     def fillDown(self):
         printer = self.head
         for i in range(int(self.row)):
@@ -77,3 +80,33 @@ class listaMatriz:
                     #" Apunta hacia la arriba:" + printer.getUp().getColor()+" "+str(printer.getUp().getPosX())
                     #+" "+str(printer.getUp().getPosY()))
                 printer = printer.getRight()
+
+    def lenX(self):
+        return self.row
+    
+    def lenY(self):
+        return self.column
+
+
+
+    def graphviz(self):
+        printer = self.head
+        cadena=""
+        cadena+="digraph{ \n"
+        
+        while printer !=None and printer.getRight()!=None:
+            cadena+='{}[label="{}"];\n'.format(printer.getColor(),printer.getColor())
+            printer=printer.getRight()
+        printer=self.head
+        while printer != None and printer.getRight()!=None:
+            cadena+='{}->{};\n'.format(printer.getColor(),printer.getRight().getColor())
+            printer=printer.getRight()
+        cadena+="}"
+        documentoTxt= "lista.dot"
+        doc= open("lista.dot", "w") 
+        doc.write(cadena)
+        pdf='graficaPatron.pdf'
+        os.system("neato -Tpdf "+documentoTxt+" -o "+pdf) 
+        webbrowser.open(documentoTxt)
+
+

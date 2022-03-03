@@ -1,0 +1,9 @@
+digraph6{ 
+Wlabel="B";
+Blabel="W";
+Wlabel="B";
+Blabel="W";
+Wlabel="W";
+Wlabel="W";
+Wlabel="B";
+}

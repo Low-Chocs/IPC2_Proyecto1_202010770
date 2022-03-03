@@ -4,7 +4,6 @@ class patron_Nodo:
     def __init__(self, code, cadena, row, column,flip,swap):
         self.code = code
         self.cadena: str = cadena
-        print(self.cadena)
         self.row = row
         self.column = column
         self.next = None
@@ -12,7 +11,6 @@ class patron_Nodo:
         self.swap=swap
         self.matrix = listaMatriz(row,column)
         self.loadMatrix(row,column)
-        self.matrix.show()
 
     def getSwap(self):
         return self.swap

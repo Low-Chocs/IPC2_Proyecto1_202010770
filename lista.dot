@@ -1,0 +1,16 @@
+digraph{ 
+W[label="W"];
+B[label="B"];
+W[label="W"];
+B[label="B"];
+W[label="W"];
+W[label="W"];
+W[label="W"];
+W->B;
+B->W;
+W->B;
+B->W;
+W->W;
+W->W;
+W->B;
+}

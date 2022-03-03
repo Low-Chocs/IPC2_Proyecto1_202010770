@@ -55,7 +55,11 @@ class listaPatron:
         print("No se encontro la lista")
     
     
-
+    def getFlip(self):
+        return self.head.getFlip()
+        
+    def getSwap(self):
+        return self.head.getSwap()
     
     def clean(self):
         self.head =None
