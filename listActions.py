@@ -1,12 +1,13 @@
 from textList import *
+import graphviz
 class listActions:
 
     def __init__(self, patternsList):
         self.patternsList=patternsList
         self.option=0
         self.option2=0
-        self.textFlip=textList()
-        self.textLowerPrice= textList()
+        self.textLowerPrice=textList()
+        self.textLowerPrice2= textList()
         self.Total=0
 
     def menu(self):
@@ -40,12 +41,15 @@ class listActions:
         self.patternsList.showMenu()
         self.option2=int(input("Seleccione una opción:\n"))
         array2=self.patternsList.newList(self.option2)
-        array3=self.patternsList.newList(1)
-        array4=self.patternsList.newList(self.option2)
 
         if self.differences(array,array2):
-            self.economicList(array3,array4)
-            array3.show()
+            self.economicList3(array,array2)
+            array=self.patternsList.newList(1)
+            array2=self.patternsList.newList(self.option2)
+            self.economicList4(array,array2)
+        else:
+            print("Elije un patrón diferente")
+            self.newPattern
             
 
 
@@ -68,21 +72,23 @@ class listActions:
         aux=array.find(i, j).getColor()
         array.find(i, j).setColor(array2.find(i,j).getColor())
         self.textLowerPrice.insert("Posición en x: "+ str(i) +" Posición en y: "+ str(j)
-        +"De color: "+aux+" se volteo y tiene el color de: "+array.find(i, j).getColor())
+        +" De color: "+aux+" se volteo y tiene el color de: "+array.find(i, j).getColor())
         return int(self.patternsList.getFlip())
 
     def swapX(self,array,i,j):
         aux=array.find(i, j).getColor()
         array.find(i, j).setColor(array.find(i, j+1).getColor())
+        array.find(i, j+1).setColor(aux)
         self.textLowerPrice.insert("Posición en x: "+ str(i) +" Posición en y: "+ str(j)
-        +"De color: "+aux+" se intercambio y tiene el color de: "+array.find(i, j).getColor())
+        +" De color: "+aux+" se intercambio y tiene el color de: "+array.find(i, j).getColor())
         return int(self.patternsList.getSwap())
 
     def swapY(self,array,i,j):
         aux=array.find(i, j).getColor()
         array.find(i, j).setColor(array.find(i+1, j).getColor())
+        array.find(i+1, j).setColor(aux)
         self.textLowerPrice.insert("Posición en x: "+ str(i) +" Posición en y: "+ str(j)
-        +"De color: "+aux+" se intercambio y tiene el color de: "+array.find(i, j).getColor())
+        +" De color: "+aux+" se intercambio y tiene el color de: "+array.find(i, j).getColor())
         return int(self.patternsList.getSwap())
         
 
@@ -98,22 +104,68 @@ class listActions:
             isDifferent==False
         return isDifferent
     
-    def economicList(self, array, array2):
+    def economicList3(self, array, array2):
         total=0
+
+        for p in range(int(array.lenX())):
+            for l in range(int(array.lenY())):
+                if array.find(p, l).getColor()!=array2.find(p,l).getColor():
+                    if 2 *int(self.patternsList.getFlip())>=int(self.patternsList.getSwap()):
+                        if array.find(p, l+1) is not None and array.find(p, l).getColor()!=array2.find(p,l).getColor()  and array.find(p, l).getColor()== array2.find(p, l+1).getColor():
+                            if array.find(p, l+1).getColor()== array2.find(p, l).getColor():
+                                total+=self.swapX(array, p, l)
+                        if array.find(p+1, l) is not None:
+                            if array.find(p+1, l).getColor()==array2.find(p, l).getColor() and array.find(p, l).getColor()== array2.find(p+1, l).getColor():
+                                total+=self.swapY(array, p, l)
+
         for i in range(int(array.lenX())):
             for j in range(int(array.lenY())):
                 if array.find(i, j).getColor()!=array2.find(i,j).getColor():
-                    if 2 *int(self.patternsList.getFlip())>int(self.patternsList.getSwap()):
-                        if array.find(i, j+1) is not None and array.find(i,j) is not None:
+                    if 2 *int(self.patternsList.getFlip())>=int(self.patternsList.getSwap()):
+                        if array.find(i, j+1) is not None:
                             if array.find(i, j+1).getColor()== array2.find(i, j).getColor():
                                 total+=self.swapX(array, i, j)
-                        elif array.find(i+1, j) is not None and array.find(i,j) is not None:
+                        if array.find(i+1, j) is not None and array.find(i, j).getColor()!=array2.find(i,j).getColor():
                             if array.find(i+1, j).getColor()==array2.find(i, j).getColor():
                                 total+=self.swapY(array, i, j)
-                        else:
-                            total+=self.flip(array,array2,i,j)
-                    else:
-                            total+=self.flip(array,array2,i,j)
+
+        for k in range(int(array.lenX())):
+            for h in range(int(array.lenY())):
+                if array.find(k, h).getColor()!=array2.find(k,h).getColor():
+                    total+=self.flip(array,array2,k,h)
+        self.textLowerPrice.show()
+        print("El total es de: "+ str(total))
+    
+    def economicList4(self, array, array2):
+        total=0
+
+        for i in range(int(array.lenX())):
+            for j in range(int(array.lenY())):
+                if array.find(i, j).getColor()!=array2.find(i,j).getColor():
+                    if 2 *int(self.patternsList.getFlip())>=int(self.patternsList.getSwap()):
+                        if array.find(i+1, j) is not None:
+                            if array.find(i+1, j).getColor()==array2.find(i, j).getColor() and array.find(i, j).getColor()== array2.find(i+1, j).getColor():
+                                total+=self.swapY(array, i, j)
+                        if array.find(i, j+1) is not None and array.find(i, j).getColor()!=array2.find(i,j).getColor()  and array.find(i, j).getColor()== array2.find(i, j+1).getColor():
+                            if array.find(i, j+1).getColor()== array2.find(i, j).getColor():
+                                total+=self.swapX(array, i, j)
+
+
+        for l in range(int(array.lenX())):
+            for p in range(int(array.lenY())):
+                if array.find(l, p).getColor()!=array2.find(l,j).getColor():
+                    if 2 *int(self.patternsList.getFlip())>=int(self.patternsList.getSwap()):
+                        if array.find(l+1, p) is not None:
+                            if array.find(l+1, p).getColor()==array2.find(l, p).getColor():
+                                total+=self.swapY(array, l, p)
+                        if array.find(l, p+1) is not None and array.find(l, p).getColor()!=array2.find(l,p).getColor():
+                            if array.find(l, p+1).getColor()== array2.find(l, p).getColor():
+                                total+=self.swapX(array, l, p)
+            
+        for k in range(int(array.lenX())):
+            for h in range(int(array.lenY())):
+                if array.find(k, h).getColor()!=array2.find(k,h).getColor():
+                    total+=self.flip(array,array2,k,h)
         self.textLowerPrice.show()
         print("El total es de: "+ str(total))
 

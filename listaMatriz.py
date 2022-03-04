@@ -92,7 +92,7 @@ class listaMatriz:
     def graphviz(self):
         printer = self.head
         cadena=""
-        cadena+="digraph{ \n"
+        cadena+="digraph 61{ \n"
         
         while printer !=None and printer.getRight()!=None:
             cadena+='{}[label="{}"];\n'.format(printer.getColor(),printer.getColor())
@@ -102,11 +102,11 @@ class listaMatriz:
             cadena+='{}->{};\n'.format(printer.getColor(),printer.getRight().getColor())
             printer=printer.getRight()
         cadena+="}"
-        documentoTxt= "lista.dot"
-        doc= open("lista.dot", "w") 
-        doc.write(cadena)
-        pdf='graficaPatron.pdf'
-        os.system("neato -Tpdf "+documentoTxt+" -o "+pdf) 
-        webbrowser.open(documentoTxt)
+
+        with  open("lista.txt", "w") as doc:
+            doc.write(cadena)
+            doc.close()
+        os.system('neato -Tpdf lista.txt -o lista.pdf') 
+        webbrowser.open('lista.pdf')
 
 

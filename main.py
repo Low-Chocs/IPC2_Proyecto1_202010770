@@ -1,6 +1,6 @@
 from imp import load_source
 from traceback import format_exception
-from load import *
+from loadXml import *
 from piso_Lista import piso_Lista as pisoL
 from showData import showData
 from listaPatron import *
@@ -29,16 +29,16 @@ while option != 4:
     if option == 1:
         pisoLista = pisoL()
         #try:
-        name = load.loadName()
-        R = load.loadR()
-        C = load.loadC()
-        F = load.loadF()
-        S = load.loadS()
-        patronName = load.loadPatronName()
+        name = loadXml.loadName()
+        R = loadXml.loadR()
+        C = loadXml.loadC()
+        F = loadXml.loadF()
+        S = loadXml.loadS()
+        patronName = loadXml.loadPatronName()
 
         for i in range(len(name)):
             patron = listaPatron()
-            patron2 = load.loadPatron(name[i].attrib['nombre'])
+            patron2 = loadXml.loadPatron(name[i].attrib['nombre'])
 
             for j in range(len(patron2)):
                 for k in range(len(patron2[j].text)):
