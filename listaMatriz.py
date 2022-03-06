@@ -90,6 +90,7 @@ class listaMatriz:
 
 
     def graphviz(self):
+    
         printer = self.head
         cadena=""
         cadena+="digraph 61{ \n"

@@ -54,7 +54,15 @@ class listaPatron:
             new=new.getNext()
         print("No se encontro la lista")
     
-    
+    def getCode(self,number):
+        getter=self.head
+        for i in range(self.size):
+            if i+1==number:
+                return getter.getCode()
+            getter=getter.getNext()
+            
+
+
     def getFlip(self):
         return self.head.getFlip()
         

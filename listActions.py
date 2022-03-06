@@ -1,5 +1,9 @@
 from textList import *
 import graphviz
+import os 
+import webbrowser 
+import graphviz
+
 class listActions:
 
     def __init__(self, patternsList):
@@ -16,7 +20,7 @@ class listActions:
             
             if self.option==1:
                 matrix=self.showGrhapiz()
-                matrix.graphviz()
+                self.graphviz(matrix,self.option2)
                 
             elif self.option==2:
 
@@ -168,6 +172,96 @@ class listActions:
                     total+=self.flip(array,array2,k,h)
         self.textLowerPrice.show()
         print("El total es de: "+ str(total))
+
+
+    def graphviz(self, array,number):
+        counter=0
+        cadena=""
+        color=""
+        fontColor=""
+        cadena+="digraph{ \n"
+        cadena+="label={}\n".format(self.patternsList.getCode(number))
+        cadena+="edge[dir=\"none\" style=invisible]\n".format(self.patternsList.getCode(number))
+        for i in range(int(array.lenX())):
+            for j in range(int(array.lenY())):
+                if array.find(i, j).getColor() =="W" or array.find(i, j).getColor() =="w":
+                    color='white'
+                    fontColor="black"
+                else:
+                    color='black'
+                    fontColor="white"
+                if i==0 and j==0:
+                    cadena+='\t{}[label="{},{}",shape=square,style=filled, fillcolor={},fontcolor={}];\n'.format(counter,array.find(i, j).getPosX(),array.find(i, j).getPosY(),color, fontColor)
+                    counter+=1
+                    color=""
+                    fontColor=""
+                    continue                
+                else:
+                    cadena+='\t{}[label="{},{}",shape=square,style=filled, fillcolor={}, group={},fontcolor={}];\n'.format(counter,array.find(i, j).getPosX(),array.find(i, j).getPosY(),color,j, fontColor)
+                    counter+=1
+                    color=""
+                    fontColor=""
+
+        counter=0
+        counter2=0
+        up=""
+        max=int(array.lenX())*int(array.lenY())
+        print(max)
+        for h in range(int(array.lenX())):
+            if counter2<2:
+                cadena+="0"
+            for k in range(int(array.lenY())):
+                if h==0 and k==0:
+                    counter+=1
+                    counter2+=1
+                elif k!=0:
+                    if counter<max:
+                        cadena+="->"
+                        cadena+="{}".format(counter)
+                        counter+=1
+                        continue
+                elif k==0:
+                    if counter<max and counter2<2:
+                        cadena+="->"
+                        cadena+="{}".format(counter)
+                        counter+=1
+                        counter2+=1
+                        up=str(j+1)
+                        continue
+                    elif counter<max and counter2>=2:
+                        cadena+="{}->".format(up)
+                        cadena+="{}".format(counter)
+                        counter+=1
+                        counter2+=1
+                        continue
+
+            cadena+="\n"
+        cadena+="\n"
+        contador=0
+        
+        for p in range(int(array.lenX())):
+            if contador<max:
+                cadena+="{rank = same;"
+                for q in range(int(array.lenY())):
+                    if p==0 and q==0:
+                        cadena+="0;"
+                    if p!=0 or q!=0:
+                        if contador<max and contador<(int(array.lenY()))*(i+1):
+                            cadena+="{};".format(contador+1)
+                            contador+=1
+                            if contador>(int(array.lenY()))*(i+1):
+                                break
+                            
+                cadena+="}\n"
+        cadena+="}"
+        with  open("lista.dot", "w") as doc:
+            doc.write(cadena)
+            doc.close()
+            pdf=self.patternsList.getCode(number)
+        os.system('dot -Tpdf lista.dot -o '+pdf+'.pdf') 
+        webbrowser.open(pdf+'.pdf')
+
+
 
     
         
