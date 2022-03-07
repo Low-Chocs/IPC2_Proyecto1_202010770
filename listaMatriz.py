@@ -33,6 +33,14 @@ class listaMatriz:
                   str(printer.getPosX())+"\nPosición en y: "
                   + str(printer.getPosY()))
             printer = printer.getRight()
+    
+    def show2(self):
+        printer = self.head
+        chain=""
+        for i in range(self.size):
+            chain+=printer.getColor()
+            printer = printer.getRight()
+        return chain
 
     def find(self, x, y):
         printer = self.head
@@ -86,28 +94,3 @@ class listaMatriz:
     
     def lenY(self):
         return self.column
-
-
-
-    def graphviz(self):
-    
-        printer = self.head
-        cadena=""
-        cadena+="digraph 61{ \n"
-        
-        while printer !=None and printer.getRight()!=None:
-            cadena+='{}[label="{}"];\n'.format(printer.getColor(),printer.getColor())
-            printer=printer.getRight()
-        printer=self.head
-        while printer != None and printer.getRight()!=None:
-            cadena+='{}->{};\n'.format(printer.getColor(),printer.getRight().getColor())
-            printer=printer.getRight()
-        cadena+="}"
-
-        with  open("lista.txt", "w") as doc:
-            doc.write(cadena)
-            doc.close()
-        os.system('neato -Tpdf lista.txt -o lista.pdf') 
-        webbrowser.open('lista.pdf')
-
-

@@ -23,3 +23,6 @@ class textList:
         for i in range(self.size):
             print(printer.getText())
             printer=printer.getNext()
+
+    def len(self):
+        return self.size

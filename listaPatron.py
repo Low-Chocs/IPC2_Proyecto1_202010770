@@ -49,8 +49,8 @@ class listaPatron:
         for i in range(self.size):
             print(option)
             if i+1==option:
-                return new.getMatrix()
-            print(new.getNext().getMatrix().show())
+                array=new.getMatrix()
+                return array
             new=new.getNext()
         print("No se encontro la lista")
     
