@@ -249,9 +249,3 @@ class listActions:
             pdf=self.patternsList.getCode(number)
         os.system('dot -Tpdf lista.dot -o '+pdf+'.pdf') 
         webbrowser.open(pdf+'.pdf')
-
-
-
-    
-        
-
