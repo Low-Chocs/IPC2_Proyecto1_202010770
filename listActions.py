@@ -3,7 +3,7 @@ import graphviz
 import os 
 import webbrowser 
 import graphviz
-
+#Lista de acciones modulo 3
 class listActions:
 
     def __init__(self, patternsList):
@@ -28,7 +28,7 @@ class listActions:
                 print("Elije un número mayor a 1")
             elif self.option>3:
                 print("Elije un valor menor a 3")
-
+    #Manda a llamar la función que muestra las graficas
     def showGrhapiz(self):
         try:
             self.patternsList.showMenu()
@@ -38,7 +38,7 @@ class listActions:
         except:
             print("No se logro cargar la lista")
             self.showGrhapiz()
-            
+    #Manda a llamar el algoritmo para poder encontrar el menor precio posible
     def newPattern(self):
         array=self.patternsList.newList(1)
         self.patternsList.showMenu()
@@ -59,7 +59,7 @@ class listActions:
             print("Elije un patrón diferente")
             self.newPattern()
             
-            
+    #Función para realizar el volteo   
     def flip(self,array,array2,i,j):
         aux=array.find(i, j).getColor()
         array.find(i, j).setColor(array2.find(i,j).getColor())
@@ -67,7 +67,7 @@ class listActions:
         +" De color: "+aux+" se volteo y tiene el color de: "+array.find(i, j).getColor()+
         "\nPatron actual: "+array.show2())
         return int(self.patternsList.getFlip())
-
+    #Funcion que permite hacer el intercambio en x
     def swapX(self,array,i,j):
         aux=array.find(i, j).getColor()
         array.find(i, j).setColor(array.find(i, j+1).getColor())
@@ -76,7 +76,7 @@ class listActions:
         +" De color: "+aux+" se intercambio con "+str(i)+","+ str(j+1)+" y tiene el color de: "+array.find(i, j).getColor()+
         "\nPatron actual: "+array.show2())
         return int(self.patternsList.getSwap())
-
+    #Funcion que permite hacer el intercambio en y
     def swapY(self,array,i,j):
         aux=array.find(i, j).getColor()
         array.find(i, j).setColor(array.find(i+1, j).getColor())
@@ -87,7 +87,7 @@ class listActions:
         return int(self.patternsList.getSwap())
         
 
-    #Function that compares if the arrays are different
+    #Funcion que encuentra diferencias
     def differences(self, array, array2):
         movements=0
         isDifferent =True
@@ -98,7 +98,7 @@ class listActions:
         if movements==0:
             isDifferent==False
         return isDifferent
-    
+    #Algoritmo que es explicado en el ensayo para encontrar la menor cantidad de movimientos posibles
     def economicList3(self, array, array2):
         total=0
         for p in range(int(array.lenX())):
@@ -162,7 +162,7 @@ class listActions:
         print("El total es de: "+ str(total))
         return total
 
-
+    #Funcion que grafica
     def graphviz(self, array,number):
         counter=0
         cadena=""

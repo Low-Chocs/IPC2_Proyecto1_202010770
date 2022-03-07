@@ -24,7 +24,7 @@ class listaMatriz:
         else:
             self.bottom.setRight(newNode)
             self.bottom = newNode
-
+    #Para mostrar los datos de manera matricial
     def show(self):
         printer = self.head
         for i in range(self.size):
@@ -33,7 +33,7 @@ class listaMatriz:
                   str(printer.getPosX())+"\nPosición en y: "
                   + str(printer.getPosY()))
             printer = printer.getRight()
-    
+    #Para mostrar los patrones de manera sencilla
     def show2(self):
         printer = self.head
         chain=""
@@ -41,7 +41,7 @@ class listaMatriz:
             chain+=printer.getColor()
             printer = printer.getRight()
         return chain
-
+    #La función para encontrar el color en una posición exacta
     def find(self, x, y):
         printer = self.head
         if printer!=None and printer.getRight()!=None:
@@ -54,7 +54,7 @@ class listaMatriz:
                 printer = printer.getRight()
         else:
             return None
-    
+    #Para llenar abajo
     def fillDown(self):
         printer = self.head
         for i in range(int(self.row)):
@@ -65,7 +65,7 @@ class listaMatriz:
                     #" Apunta hacia:" + printer.getDown().getColor()+" "+str(printer.getDown().getPosX())
                     #+" "+str(printer.getDown().getPosY()))
                 printer = printer.getRight()
-
+    #Llenar el anterior
     def fillLeft(self):
         printer = self.head
         for i in range(int(self.row)):
@@ -76,7 +76,7 @@ class listaMatriz:
                    # " Apunta hacia la izquierda:" + printer.getLeft().getColor()+" "+str(printer.getLeft().getPosX())
                     #+" "+str(printer.getLeft().getPosY()))
                 printer = printer.getRight()
-
+    #Llenar arriba
     def fillUp(self):
         printer = self.head
         for i in range(int(self.row)):
@@ -88,9 +88,9 @@ class listaMatriz:
                     #" Apunta hacia la arriba:" + printer.getUp().getColor()+" "+str(printer.getUp().getPosX())
                     #+" "+str(printer.getUp().getPosY()))
                 printer = printer.getRight()
-
+    #Para obtener la cantidad de filas 
     def lenX(self):
         return self.row
-    
+    #Para obtener una cantidad de  columnas
     def lenY(self):
         return self.column

@@ -1,3 +1,4 @@
+#Se busca entre la lista de pisos para devoler una lista de patrones
 from piso_Lista import piso_Lista as pisoLista
 class showData:
     def __init__(self, pisoList):

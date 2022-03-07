@@ -1,3 +1,4 @@
+#Aquí se hicieron las pruebas de los algoritmos
 from textList import *
 class listActions:
 

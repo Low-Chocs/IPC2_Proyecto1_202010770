@@ -1,5 +1,5 @@
 from patron_Nodo import *
-
+#Lista que almacena los diferentes patrones y así crear la matriz
 class listaPatron:
     def __init__(self):
         self.head= None

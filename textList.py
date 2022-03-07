@@ -1,3 +1,4 @@
+#Lista para obtener y mostrar las instrucciones a seguir
 from textNode import *
 
 class textList:
